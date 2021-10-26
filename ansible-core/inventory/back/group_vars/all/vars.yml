@@ -1,0 +1,4 @@
+---
+directory: /back
+NODEJS_VERSION: "14"
+back_port: 8080

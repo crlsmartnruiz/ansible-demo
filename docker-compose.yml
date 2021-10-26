@@ -1,0 +1,35 @@
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nginx
+    working_dir: /ansible
+    command:  bash -c "while :; do echo 'Hit CTRL+C'; sleep 1; done"
+    # command: ansible-playbook playbooks/nginx.yml -t all -i inventory/nginx --extra-vars "" -v
+    ports:
+      - 80:80
+    volumes:
+      - ./ansible-core:/ansible
+  back:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: back
+    working_dir: /ansible
+    command:  bash -c "while :; do echo 'Hit CTRL+C'; sleep 1; done"
+    # command: ansible-playbook playbooks/back.yml -t all -i inventory/back --extra-vars "" -v
+    volumes:
+      - ./ansible-core:/ansible
+  mongo:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mongo
+    working_dir: /ansible
+    command:  bash -c "while :; do echo 'Hit CTRL+C'; sleep 1; done"
+    # command: ansible-playbook playbooks/mongo.yml -t mongo -i inventory/mongo --extra-vars "" -v
+    ports:
+      - 27017:27017
+    volumes:
+      - ./ansible-core:/ansible

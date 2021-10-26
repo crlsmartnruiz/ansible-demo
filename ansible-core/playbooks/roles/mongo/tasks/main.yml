@@ -1,0 +1,16 @@
+---
+- name: Copy mongodb config file
+  template:
+    src: mongodb.conf
+    dest: /etc/mongodb.conf
+
+- name: install packages
+  apt: 
+    pkg: mongodb
+    state: present 
+    update_cache: yes                      
+
+- name: start mongod service
+  service: 
+    name: mongodb
+    state: started
